@@ -83,26 +83,37 @@ target4 = 19999
 
 # Решение № 2:
 
+# class Solution:
+#     def twoSum(self, nums: List[int], target: int) -> List[int]:
+#         # Словарь для хранения чисел и их индексов
+#         num_index_map = {}
+
+#         # Итерация по списку чисел
+#         for i, num in enumerate(nums):
+#             # print(f'Словарь для хранения чисел и их индексов (num_index_map): {num_index_map}')
+#             # Находим комплемент к текущему числу
+#             complement = target - num
+#             # print(f'complement число (target - num): {complement}')
+#             # Если кэш содержит комплемент, возвращаем его индекс и текущий индекс
+#             if complement in num_index_map:
+#                 print(f'Если кэш содержит комплемент, возвращаем его индекс и текущий индекс: {num_index_map[complement]}, {i}')
+#                 return [num_index_map[complement], i]
+#             # Добавляем число и его индекс в кэш
+#             num_index_map[num] = i
+#             # print(f'Добавляем число и его индекс в кэш: {num_index_map[num]}, = {i}')
+
+#         return []
+
+
+
+# Решение # 3:
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # Словарь для хранения чисел и их индексов
-        num_index_map = {}
-
-        # Итерация по списку чисел
-        for i, num in enumerate(nums):
-            # print(f'Словарь для хранения чисел и их индексов (num_index_map): {num_index_map}')
-            # Находим комплемент к текущему числу
-            complement = target - num
-            # print(f'complement число (target - num): {complement}')
-            # Если кэш содержит комплемент, возвращаем его индекс и текущий индекс
-            if complement in num_index_map:
-                print(f'Если кэш содержит комплемент, возвращаем его индекс и текущий индекс: {num_index_map[complement]}, {i}')
-                return [num_index_map[complement], i]
-            # Добавляем число и его индекс в кэш
-            num_index_map[num] = i
-            # print(f'Добавляем число и его индекс в кэш: {num_index_map[num]}, = {i}')
-
-        return []
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[j] == target - nums[i]:
+                    return [i, j]
 
 
 print(Solution().twoSum(nums4, target4))
