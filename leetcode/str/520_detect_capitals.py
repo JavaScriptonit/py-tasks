@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/detect-capital/description/
+
 class Solution:
     def detectCapitalUse(self, word: str) -> bool:
         word_letters = list(word)
