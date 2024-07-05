@@ -49,7 +49,7 @@
 # It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
 
-# Решение #1:
+# Решение #1 (50-60ms):
 
 class Solution:
     def romanToInt(self, s: str) -> int:
@@ -81,3 +81,38 @@ s = "III"
 # s = "LVIII"
 
 print(Solution().romanToInt(s))
+
+
+
+# Решение #2 (30-40ms):
+
+# Улучшенный способ обращения к словарю: Вместо того, чтобы обращаться к словарю roman_to_int на каждой итерации цикла, 
+# можно использовать условие или иной метод для определения знака числа и, таким образом, избежать повторного обращения.
+# Использование строки вместо списка: Преобразование римского числа в список цифр и работы с ним напрямую.
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_to_int = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+        
+        total = 0
+        prev_value = 0
+        
+        s = s[::-1]  # Преобразуем строку в обратном порядке
+        
+        for char in s:
+            value = roman_to_int[char]
+            if value < prev_value:
+                total -= value
+            else:
+                total += value
+            prev_value = value
+        
+        return total
