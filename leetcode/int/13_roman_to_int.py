@@ -26,11 +26,15 @@
 # Input: s = "III"
 # Output: 3
 # Explanation: III = 3.
+
+
 # Example 2:
 
 # Input: s = "LVIII"
 # Output: 58
 # Explanation: L = 50, V= 5, III = 3.
+
+
 # Example 3:
 
 # Input: s = "MCMXCIV"
@@ -45,5 +49,35 @@
 # It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
 
+# Решение #1:
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_to_int = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+        
+        total_value = 0
+        prev_value = 0
+
+        for char in s:
+            value = roman_to_int[char]
+            if value > prev_value:
+                total_value += value - 2 * prev_value
+            else:
+                total_value += value
+            prev_value = value
+        return total_value
 
 
+# s = "MCMXCIV"
+s = "III"
+# s = "LVIII"
+
+print(Solution().romanToInt(s))
